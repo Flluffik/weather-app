@@ -1,0 +1,288 @@
+/* Мобильные устройства */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        min-height: calc(100vh - 20px);
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .current-location-card,
+    .city-card {
+        padding: 15px;
+        min-width: 280px;
+    }
+    
+    .day-card {
+        padding: 15px;
+    }
+    
+    .weather-header h3,
+    .city-header h3,
+    .current-location-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+    
+    .current-location-section h2,
+    .additional-cities-section h2 {
+        font-size: 1.2rem;
+    }
+    
+    .scroll-indicator span {
+        font-size: 0.8rem;
+    }
+    
+    .scroll-nav {
+        display: none !important;
+    }
+    
+    .weather-scroll-wrapper {
+        padding: 5px;
+        margin: 0 -5px;
+    }
+    
+    .current-location-days-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Планшеты */
+@media (min-width: 481px) and (max-width: 768px) {
+    .weather-scroll-wrapper {
+        padding: 5px;
+        margin: 0 -5px;
+    }
+    
+    .city-card {
+        min-width: 320px;
+    }
+    
+    .current-location-days-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .day-card {
+        padding: 15px;
+    }
+    
+    .scroll-nav {
+        display: none !important;
+    }
+}
+
+/* Десктопы */
+@media (min-width: 769px) and (max-width: 1200px) {
+    .weather-scroll-wrapper {
+        padding: 15px;
+        margin: 0 -15px;
+    }
+    
+    .current-location-days-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .day-card {
+        padding: 20px;
+    }
+    
+    .scroll-nav-left {
+        left: -10px;
+    }
+    
+    .scroll-nav-right {
+        right: -10px;
+    }
+}
+
+/* Большие экраны */
+@media (min-width: 1201px) {
+    .weather-scroll-wrapper {
+        padding: 20px;
+        margin: 0 -20px;
+    }
+    
+    .current-location-days-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    .day-card {
+        padding: 25px;
+    }
+    
+    .scroll-nav-left {
+        left: -15px;
+    }
+    
+    .scroll-nav-right {
+        right: -15px;
+    }
+}
+
+/* Высокие экраны */
+@media (min-height: 800px) {
+    .main-content {
+        min-height: 600px;
+    }
+    
+    .weather-scroll-wrapper {
+        max-height: 600px;
+    }
+    
+    .current-location-card {
+        min-height: 400px;
+    }
+}
+
+/* Портретная ориентация */
+@media (orientation: portrait) {
+    .header {
+        padding: 15px;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+    
+    .weather-scroll-wrapper {
+        padding: 10px;
+        margin: 0 -10px;
+    }
+    
+    .current-location-days-grid {
+        gap: 15px;
+    }
+}
+
+/* Ландшафтная ориентация */
+@media (orientation: landscape) and (max-height: 600px) {
+    .header {
+        padding: 10px 20px;
+    }
+    
+    .main-content {
+        padding: 10px 20px;
+    }
+    
+    .weather-scroll-wrapper {
+        padding: 5px;
+        margin: 0 -5px;
+    }
+    
+    .current-location-section {
+        margin-bottom: 15px;
+    }
+    
+    .current-location-section h2,
+    .additional-cities-section h2 {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+    }
+    
+    .current-location-days-grid {
+        gap: 10px;
+    }
+    
+    .day-card {
+        padding: 15px;
+    }
+}
+
+/* Для устройств с тач-скрином */
+@media (hover: none) and (pointer: coarse) {
+    .scroll-nav {
+        display: none !important;
+    }
+    
+    .weather-scroll-wrapper {
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .city-card {
+        scroll-snap-align: start;
+    }
+    
+    .scroll-indicator {
+        display: flex;
+    }
+    
+    .current-location-days {
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .day-card {
+        scroll-snap-align: start;
+    }
+}
+
+/* Для устройств с мышью */
+@media (hover: hover) and (pointer: fine) {
+    .scroll-nav {
+        display: flex;
+    }
+    
+    .weather-scroll-wrapper::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .weather-scroll-wrapper:hover::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+    }
+    
+    .current-location-days::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .current-location-days:hover::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+    }
+}
+
+/* Анимация появления скролл-индикатора */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-indicator {
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Анимация карточек */
+.day-card, .city-card {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
