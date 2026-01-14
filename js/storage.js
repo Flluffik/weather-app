@@ -157,7 +157,7 @@ function setCurrentLocation(locationData) {
     return saveAppData(data);
 }
 
-// Восстановление текущей локации (только если ее нет)
+// Восстановление текущей локации
 function tryRestoreCurrentLocation() {
     const data = loadAppData();
     
@@ -192,17 +192,48 @@ function clearCurrentLocation() {
     return saveAppData(data);
 }
 
-// Получение списка всех локаций (текущая + города)
+// Получение списка всех локаций (текущая + города) - ИСПРАВЛЕННАЯ ВЕРСИЯ
 function getAllLocations() {
     const data = loadAppData();
     const locations = [];
     
     // Пытаемся восстановить текущую локацию если ее нет
     if (!data.currentLocation) {
-        tryRestoreCurrentLocation();
-        // Перезагружаем данные после возможного восстановления
-        return getAllLocations();
+        const restored = tryRestoreCurrentLocation();
+        // Если восстановили, перезагружаем данные
+        if (restored) {
+            return loadAppDataWithLocations(); // Используем вспомогательную функцию
+        }
     }
+    
+    // Добавляем текущую локацию если она есть
+    if (data.currentLocation && data.currentLocation.coords) {
+        locations.push({
+            name: 'Текущее местоположение',
+            type: 'current',
+            coords: data.currentLocation.coords,
+            displayName: 'Текущее местоположение',
+            restored: data.currentLocation.restored || false
+        });
+    }
+    
+    // Добавляем все города
+    data.cities.forEach(city => {
+        locations.push({
+            name: city.apiName || city.displayName,
+            displayName: city.displayName,
+            originalName: city.displayName,
+            type: 'city'
+        });
+    });
+    
+    return locations;
+}
+
+// Вспомогательная функция для загрузки данных с локациями
+function loadAppDataWithLocations() {
+    const data = loadAppData();
+    const locations = [];
     
     // Добавляем текущую локацию если она есть
     if (data.currentLocation && data.currentLocation.coords) {
